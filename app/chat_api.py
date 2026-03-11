@@ -7,21 +7,29 @@ router = APIRouter()
 class Query(BaseModel):
     message: str
 
+
 @router.post("/chat")
 def chat(query: Query):
 
-    text = query.message
+    text = query.message.lower()
 
-    is_gold = detect_gold_intent(text)
+    # Detect purchase confirmation
+    if text in ["yes", "yes please", "buy gold", "purchase gold"]:
+        return {
+            "type": "purchase_redirect",
+            "response": "Great! Redirecting you to digital gold purchase.",
+            "next_action": "/buy-gold"
+        }
 
-    if is_gold:
+    # Detect gold investment questions
+    if detect_gold_intent(text):
 
         response = generate_gold_response(text)
 
         return {
             "type": "gold_investment",
             "response": response,
-            "next_action": "buy_gold_api"
+            "next_action": "awaiting_user_confirmation"
         }
 
     return {

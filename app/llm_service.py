@@ -1,6 +1,6 @@
 from transformers import pipeline
 
-generator = pipeline("text-generation", model="gpt2")
+generator = pipeline("text-generation", model="distilgpt2")
 
 
 def detect_gold_intent(text):
@@ -18,13 +18,10 @@ def detect_gold_intent(text):
 
 def generate_gold_response(text):
 
-    prompt = f"""
-    User question: {text}
+    response = (
+        "Gold is considered a stable investment"
+        "You can also invest in digital gold easily using the Simplify Money app. "
+        "Would you like to proceed with purchasing digital gold?"
+    )
 
-    Answer the question briefly about gold investment.
-    Then suggest that the user can invest in digital gold using the Simplify Money app.
-    """
-
-    output = generator(prompt, max_length=80)
-
-    return output[0]["generated_text"]
+    return response
