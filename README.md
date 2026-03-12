@@ -169,17 +169,6 @@ Run server:
 ```
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-
----
-
-# 🔮 Future Improvements
-
-* Integration with real gold price APIs
-* Fine-tuned transformer model for intent detection
-* Conversational memory for multi-turn dialogue
-* Web chat interface for better user interaction
-* Secure payment simulation
-
 ---
 
 # 📌 Key Learning Outcomes
@@ -237,4 +226,5 @@ Then open the API documentation:
 ```
 http://localhost:8000/docs
 ```
+
 
